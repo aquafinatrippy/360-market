@@ -15,7 +15,10 @@ export const SignIn = () => {
   const navigate = useNavigate();
 
   const onChange = (e) => {
-    console.log(e);
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   return (
@@ -30,6 +33,7 @@ export const SignIn = () => {
               onChange={onChange}
               type="email"
               placeholder="Email"
+              value={email}
               className="emailInput"
               id="email"
             />
@@ -60,6 +64,10 @@ export const SignIn = () => {
               </button>
             </div>
           </form>
+
+          <Link to="/signup" className="registerLink">
+            Sign Up{" "}
+          </Link>
         </main>
       </div>
     </>

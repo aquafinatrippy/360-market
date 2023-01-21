@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import './index.css'
+import "./index.css";
 import { Navbar } from "./components/Navbar";
 import { Explore } from "./pages/Explore";
 import { ForgetPassword } from "./pages/ForgotPassword";
@@ -12,11 +12,10 @@ function App() {
   return (
     <>
       <Router>
-        
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route path="/offers" element={<Offers />} />
-          <Route path="/sigin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpassword" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
