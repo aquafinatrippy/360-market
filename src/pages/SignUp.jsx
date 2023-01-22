@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -51,7 +52,7 @@ export const SignUp = () => {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong with registration");
     }
   };
 

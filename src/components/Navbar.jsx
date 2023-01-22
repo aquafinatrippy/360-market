@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
-import { ReactComponent as ExploreIcon } from "../assets/svg/localOfferIcon.svg";
-import { ReactComponent as PersonOutlineIcon } from "../assets/svg/personOutlineIcon.svg";
-import { ReactComponent as OfferIcon } from "../assets/svg/localOfferIcon.svg";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ExploreIcon from "@mui/icons-material/Explore";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -17,13 +17,12 @@ export const Navbar = () => {
         <ul className="navbarListItems">
           <li className="navbarListItem" onClick={() => navigate("/")}>
             <ExploreIcon
-              fill={
-                pathMatchRoute("/")
+              sx={{
+                fontSize: 36,
+                color: pathMatchRoute("/profile")
                   ? "navbarListItemNameActive"
-                  : "navbarListItemName"
-              }
-              width={36}
-              height={36}
+                  : "navbarListName",
+              }}
             />
             <p
               className={
@@ -36,14 +35,13 @@ export const Navbar = () => {
             </p>
           </li>
           <li className="navbarListItem" onClick={() => navigate("/offers")}>
-            <OfferIcon
-              fill={
-                pathMatchRoute("/offers")
+            <LocalOfferIcon
+              sx={{
+                fontSize: 36,
+                color: pathMatchRoute("/profile")
                   ? "navbarListItemNameActive"
-                  : "navbarListName"
-              }
-              width={36}
-              height={36}
+                  : "navbarListName",
+              }}
             />
             <p
               className={
@@ -56,15 +54,14 @@ export const Navbar = () => {
             </p>
           </li>
           <li className="navbarListItem" onClick={() => navigate("/profile")}>
-            <PersonOutlineIcon
-              fill={
-                pathMatchRoute("/profile")
+            <AccountCircleIcon
+              sx={{
+                fontSize: 36,
+                color: pathMatchRoute("/profile")
                   ? "navbarListItemNameActive"
-                  : "navbarListName"
-              }
-              width={36}
-              height={36}
-            />
+                  : "navbarListName",
+              }}
+            ></AccountCircleIcon>
             <p
               className={
                 pathMatchRoute("/profile")
