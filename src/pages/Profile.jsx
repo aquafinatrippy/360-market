@@ -70,7 +70,7 @@ export const Profile = () => {
               type="text"
               className={!changeDetails ? "profileName" : "profileNameActive"}
               disabled={!changeDetails}
-              value={formData.name}
+              value={name}
               id="name"
               onChange={onChange}
             />
@@ -78,7 +78,7 @@ export const Profile = () => {
               type="text"
               className={!changeDetails ? "profileEmail" : "profileEmailActive"}
               disabled={!changeDetails}
-              value={formData.email}
+              value={email}
               id="email"
               onChange={onChange}
             />
