@@ -9,6 +9,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
 import LockIcon from "@mui/icons-material/Lock";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Oauth } from "../components/Oauth";
 
 export const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -107,7 +108,7 @@ export const SignIn = () => {
               </button>
             </div>
           </form>
-
+          <Oauth></Oauth>
           <Link to="/signup" className="registerLink">
             Sign Up{" "}
           </Link>

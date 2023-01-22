@@ -11,10 +11,11 @@ import { Profile } from "./pages/Profile";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { PrivateRoute } from "./components/PrivateRoute";
+import Container from "@mui/material/Container";
 
 function App() {
   return (
-    <>
+    <Container>
       <Router>
         <Routes>
           <Route path="/" element={<Explore />} />
@@ -41,7 +42,7 @@ function App() {
         pauseOnHover
         theme="light"
       ></ToastContainer>
-    </>
+    </Container>
   );
 }
 

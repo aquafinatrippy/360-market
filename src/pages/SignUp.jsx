@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { Oauth } from "../components/Oauth";
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -110,6 +111,7 @@ export const SignUp = () => {
               </button>
             </div>
           </form>
+          <Oauth></Oauth>
 
           <Link to="/signin" className="registerLink">
             Sign In{" "}
