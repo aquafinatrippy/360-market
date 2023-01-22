@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import "./styles/link.scss";
+import "./styles/overall.scss";
 import { Navbar } from "./components/Navbar";
 import { Explore } from "./pages/Explore";
 import { ForgetPassword } from "./pages/ForgotPassword";
@@ -12,22 +13,31 @@ import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Container from "@mui/material/Container";
+import { Category } from "./pages/Category";
+import DesktopNavbar from "./components/DesktopNavbar";
+import { useResponsivness } from "./hooks/useResponsivness";
 
 function App() {
+  const { isMobile } = useResponsivness();
   return (
-    <Container>
+    <>
       <Router>
-        <Routes>
-          <Route path="/" element={<Explore />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgotpassword" element={<ForgetPassword />} />
-          <Route path="/profile" element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-        </Routes>
-        <Navbar></Navbar>
+        {!isMobile && <DesktopNavbar></DesktopNavbar>}
+        <Container>
+          <Routes>
+            <Route path="/" element={<Explore />} />
+            <Route path="/offers" element={<Offers />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/category/:categoryName" element={<Category />} />
+
+            <Route path="/forgotpassword" element={<ForgetPassword />} />
+            <Route path="/profile" element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+          </Routes>
+        </Container>
+        {isMobile && <Navbar></Navbar>}
       </Router>
 
       <ToastContainer
@@ -42,7 +52,7 @@ function App() {
         pauseOnHover
         theme="light"
       ></ToastContainer>
-    </Container>
+    </>
   );
 }
 

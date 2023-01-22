@@ -2,7 +2,6 @@ import React from "react";
 import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
