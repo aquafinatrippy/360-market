@@ -3,8 +3,12 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
-import visibilityIcons from "../assets/svg/visibilityIcon.svg";
 import { toast } from "react-toastify";
+import { IconButton, TextField } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import InputAdornment from "@mui/material/InputAdornment";
+import LockIcon from "@mui/icons-material/Lock";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,34 +52,54 @@ export const SignIn = () => {
         </header>
         <main>
           <form onSubmit={onSubmit}>
-            <input
+            <TextField
+              label="Email"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
               onChange={onChange}
-              type="email"
-              placeholder="Email"
-              value={email}
-              className="emailInput"
               id="email"
+              variant="filled"
+              fullWidth
+              value={email}
             />
-            <div className="passwordInputDiv">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="passwordInput"
-                placeholder="Password"
-                id="password"
-                value={password}
-                onChange={onChange}
-              />
-              <img
-                src={visibilityIcons}
-                className="showPassword"
-                alt="show password"
-                onClick={() => setShowPassword(!showPassword)}
-              />
+            <TextField
+              label="Password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+              endadornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              onChange={onChange}
+              id="password"
+              variant="filled"
+              fullWidth
+              value={password}
+              type={showPassword ? "text" : "password"}
+            />
+            <div className="linkTarget">
+              <Link to="/forgotpassword" className="forgotPasswordLink">
+                Forgot Password
+              </Link>
             </div>
-            <Link to="/forgotpassword" className="forgotPasswordLink">
-              {" "}
-              Forgot Password
-            </Link>
+
             <div className="signInBar">
               <p className="signInText">Sign In</p>
               <button className="signInButton">

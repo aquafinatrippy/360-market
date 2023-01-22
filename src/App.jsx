@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
+import "./styles/link.scss";
 import { Navbar } from "./components/Navbar";
 import { Explore } from "./pages/Explore";
 import { ForgetPassword } from "./pages/ForgotPassword";

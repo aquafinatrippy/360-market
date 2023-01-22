@@ -96,10 +96,13 @@ export const SignUp = () => {
                 onClick={() => setShowPassword(!showPassword)}
               />
             </div>
-            <Link to="/forgotpassword" className="forgotPasswordLink">
-              {" "}
-              Forgot Password
-            </Link>
+            <div className="linkTarget">
+              <Link to="/forgotpassword" className="forgotPasswordLink">
+                {" "}
+                Forgot Password
+              </Link>
+            </div>
+
             <div className="signInBar">
               <p className="signInText">Sign Up</p>
               <button className="signInButton">

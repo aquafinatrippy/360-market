@@ -1,0 +1,14 @@
+.linkTarget a {
+  width: fit-content;
+  margin: 10px;
+  color: black;
+  background-image: linear-gradient(to bottom, transparent 65%, #fcf113 0);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  transition: background-size 0.4s ease;
+  &:hover {
+    background-size: 100% 100%;
+    cursor: pointer;
+  }
+}
