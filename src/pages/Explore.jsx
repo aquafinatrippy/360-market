@@ -5,8 +5,10 @@ import sellCategoryImage from "../assets/jpg/sellCategoryImage.jpg";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
+import { useResponsivness } from "../hooks/useResponsivness";
 
 export const Explore = () => {
+  const { isMobile } = useResponsivness();
   return (
     <div className="explore">
       <header>
@@ -14,7 +16,7 @@ export const Explore = () => {
       </header>
       <main>
         <p className="exploreCategoryHeading">Categories</p>
-        <ImageList cols={2}>
+        <ImageList cols={isMobile ? 1 : 2}>
           <ImageListItem>
             <Link to="/category/rent">
               <img className="CategoryLink" src={rentCategoryImage} alt="" />
