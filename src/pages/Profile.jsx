@@ -6,6 +6,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router-dom";
 
 export const Profile = () => {
   const auth = getAuth();
@@ -83,6 +86,11 @@ export const Profile = () => {
             />
           </form>
         </div>
+        <Link to="/createlisting" className="createListing">
+          <HomeIcon />
+          <p>Sell or rent your home</p>
+          <ArrowForwardIcon />
+        </Link>
       </main>
     </div>
   );

@@ -16,6 +16,8 @@ import Container from "@mui/material/Container";
 import { Category } from "./pages/Category";
 import DesktopNavbar from "./components/DesktopNavbar";
 import { useResponsivness } from "./hooks/useResponsivness";
+import { CreateListing } from "./pages/CreateListing";
+import { Listing } from "./pages/Listing";
 
 function App() {
   const { isMobile } = useResponsivness();
@@ -30,11 +32,13 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/category/:categoryName" element={<Category />} />
+            <Route path="/category/:categoryName/:listingId" element={<Listing />} />
 
             <Route path="/forgotpassword" element={<ForgetPassword />} />
             <Route path="/profile" element={<PrivateRoute />}>
               <Route path="/profile" element={<Profile />} />
             </Route>
+            <Route path="/createlisting" element={<CreateListing />} />
           </Routes>
         </Container>
         {isMobile && <Navbar></Navbar>}
