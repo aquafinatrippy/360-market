@@ -18,6 +18,7 @@ import DesktopNavbar from "./components/DesktopNavbar";
 import { useResponsivness } from "./hooks/useResponsivness";
 import { CreateListing } from "./pages/CreateListing";
 import { Listing } from "./pages/Listing";
+import { Contact } from "./pages/Contact";
 
 function App() {
   const { isMobile } = useResponsivness();
@@ -32,7 +33,11 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/category/:categoryName" element={<Category />} />
-            <Route path="/category/:categoryName/:listingId" element={<Listing />} />
+            <Route
+              path="/category/:categoryName/:listingId"
+              element={<Listing />}
+            />
+            <Route path="/contact/:landlordId" element={<Contact />} />
 
             <Route path="/forgotpassword" element={<ForgetPassword />} />
             <Route path="/profile" element={<PrivateRoute />}>

@@ -6,11 +6,15 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { useResponsivness } from "../hooks/useResponsivness";
+import { Slider } from "../components/Slider";
 
 export const Explore = () => {
   const { isMobile } = useResponsivness();
   return (
     <div className="explore">
+      <div>
+        <Slider></Slider>
+      </div>
       <header>
         <h2>Explore</h2>
       </header>
