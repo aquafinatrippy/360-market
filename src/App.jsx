@@ -19,6 +19,7 @@ import { useResponsivness } from "./hooks/useResponsivness";
 import { CreateListing } from "./pages/CreateListing";
 import { Listing } from "./pages/Listing";
 import { Contact } from "./pages/Contact";
+import { EditListing } from "./pages/EditListing";
 
 function App() {
   const { isMobile } = useResponsivness();
@@ -44,6 +45,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
             </Route>
             <Route path="/createlisting" element={<CreateListing />} />
+            <Route path="/editlisting/:listingId" element={<EditListing />} />
           </Routes>
         </Container>
         {isMobile && <Navbar></Navbar>}

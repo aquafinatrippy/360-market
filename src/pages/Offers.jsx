@@ -51,7 +51,7 @@ export const Offers = () => {
       const listingsRef = collection(db, "listings");
       const q = query(
         listingsRef,
-        where("type", "==", params.categoryName),
+        where("offer", "==", "true"),
         orderBy("timestamp", "desc"),
         startAfter(lastFetchedListing),
         limit(10)

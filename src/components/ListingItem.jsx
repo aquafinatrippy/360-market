@@ -4,8 +4,9 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
+import EditIcon from "@mui/icons-material/Edit";
 
-export const ListingItem = ({ listing, id }) => {
+export const ListingItem = ({ listing, id, onDelete, onEdit }) => {
   return (
     <li className="categoryListing">
       <Link
@@ -51,11 +52,12 @@ export const ListingItem = ({ listing, id }) => {
           </div>
         </div>
       </Link>
-      {/* {onDelete && (
+      {onDelete && (
         <div onClick={() => onDelete(listing.id, listing.name)}>
-          <DeleteForeverIcon></DeleteForeverIcon>
+          <DeleteForeverIcon />
         </div>
-      )} */}
+      )}
+      {onEdit && <EditIcon onClick={() => onEdit(id)} />}
     </li>
   );
 };

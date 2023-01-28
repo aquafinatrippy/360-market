@@ -37,6 +37,8 @@ export const Slider = () => {
 
   if (loading) return <Spinner></Spinner>;
 
+  if (listings.length < 0) return <></>;
+
   return (
     listings && (
       <>
