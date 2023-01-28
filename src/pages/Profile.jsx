@@ -1,6 +1,15 @@
 import React from "react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -9,10 +18,16 @@ import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Spinner } from "../components/Spinner";
+import { ListingItem } from "../components/ListingItem";
 
 export const Profile = () => {
   const auth = getAuth();
   const [changeDetails, setChangeDetails] = useState(false);
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
@@ -23,7 +38,32 @@ export const Profile = () => {
     navigate("/");
   };
   const { name, email } = formData;
-
+  useEffect(() => {
+    const fetchUserListings = async () => {
+      try {
+        const listingsRef = collection(db, "listings");
+        const q = query(
+          listingsRef,
+          where("userRef", "==", auth.currentUser.uid),
+          orderBy("timestamp", "desc")
+        );
+        const querySnap = await getDocs(q);
+        const listingsArr = [];
+        querySnap.forEach((doc) => {
+          return listingsArr.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setListings(listingsArr);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to get user listings for profile");
+      }
+    };
+    fetchUserListings();
+  }, [auth.currentUser.uid]);
   const onSubmit = async () => {
     try {
       if (auth.currentUser.displayName !== name) {
@@ -45,6 +85,20 @@ export const Profile = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onDelete = async (listingId) => {
+    if (window.confirm("Are you sure that you want to delete?")) {
+      await deleteDoc(doc(db), "listings", listingId);
+      const updatedListings = listings.filter(
+        (listing) => listing.id !== listingId
+      );
+      setListings(updatedListings);
+      toast.success("Listing item deleted successfully");
+    }
+  };
+
+  if (loading) return <Spinner></Spinner>;
+
   return (
     <div className="profile">
       <header className="profileHeader">
@@ -91,6 +145,21 @@ export const Profile = () => {
           <p>Sell or rent your home</p>
           <ArrowForwardIcon />
         </Link>
+        {!loading && listings?.length > 0 && (
+          <>
+            <p className="listingText">Your listings</p>
+            <ul className="listingsList">
+              {listings.map((listing) => (
+                <ListingItem
+                  key={listing.id}
+                  listing={listing.data}
+                  id={listing.id}
+                  onDelete={() => onDelete()}
+                />
+              ))}
+            </ul>
+          </>
+        )}
       </main>
     </div>
   );
