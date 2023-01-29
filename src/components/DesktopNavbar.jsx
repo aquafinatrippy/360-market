@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router";
+import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
 
 const pages = [
   { name: "Explore", to: "/" },
@@ -21,7 +22,9 @@ function DesktopNavbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <HolidayVillageIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -37,7 +40,7 @@ function DesktopNavbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            PROPERTY MARKET
           </Typography>
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />

@@ -4,6 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExploreIcon from "@mui/icons-material/Explore";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
+
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();

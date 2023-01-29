@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Spinner } from "../components/Spinner";
 import { ListingItem } from "../components/ListingItem";
+import TextField from "@mui/material/TextField";
 
 export const Profile = () => {
   const auth = getAuth();
@@ -107,9 +108,9 @@ export const Profile = () => {
     <div className="profile">
       <header className="profileHeader">
         <p className="pageHeader">My Profile</p>
-        <button className="logOut" type="button" onClick={onLogOut}>
+        <Button variant="contained" onClick={onLogOut}>
           Log Out
-        </button>
+        </Button>
       </header>
       <main>
         <div className="profileDetailsHeader">
@@ -126,29 +127,36 @@ export const Profile = () => {
         </div>
         <div className="profileCard">
           <form>
-            <input
-              type="text"
-              className={!changeDetails ? "profileName" : "profileNameActive"}
+            <TextField
+              fullWidth
+              variant="standard"
               disabled={!changeDetails}
-              value={name}
               id="name"
               onChange={onChange}
+              value={name}
             />
-            <input
-              type="text"
-              className={!changeDetails ? "profileEmail" : "profileEmailActive"}
+            <br />
+            <TextField
+              fullWidth
+              variant="standard"
               disabled={!changeDetails}
-              value={email}
               id="email"
               onChange={onChange}
+              value={email}
             />
           </form>
         </div>
-        <Link to="/createlisting" className="createListing">
-          <HomeIcon />
-          <p>Sell or rent your home</p>
-          <ArrowForwardIcon />
-        </Link>
+        <Button
+          sx={{
+            margin: "15px 0 0 0",
+          }}
+          variant="contained"
+          startIcon={<HomeIcon />}
+          endIcon={<ArrowForwardIcon />}
+          onClick={() => navigate("/createlisting")}
+        >
+          Sell or rent your home
+        </Button>
         {!loading && listings?.length > 0 && (
           <>
             <p className="listingText">Your listings</p>

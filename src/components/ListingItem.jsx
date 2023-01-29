@@ -5,20 +5,36 @@ import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import EditIcon from "@mui/icons-material/Edit";
+import Card from "@mui/material/Card";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 export const ListingItem = ({ listing, id, onDelete, onEdit }) => {
   return (
-    <li className="categoryListing">
+    <Card className="categoryListing">
       <Link
         to={`/category/${listing.type}/${id}`}
         className="categoryListingLink"
       >
-        <img
+        <Box
+          component="img"
+          sx={{
+            height: 250,
+            display: "block",
+            overflow: "hidden",
+            width: "100%",
+            objectFit: "cover",
+            maxWidth: 300,
+          }}
           src={listing.imageUrls[0]}
-          alt="Listing name"
-          className="categoryListingImg"
+          alt={"test"}
         />
-        <div className="categoryListingDetails">
+        <Box
+          sx={{
+            width: "100%",
+            margin: "0 30px",
+          }}
+        >
           <p className="categoryListingLocation">{listing.location}</p>
           <p className="categoryListingName">{listing.name}</p>
           <p className="categoryListingPrice">
@@ -32,32 +48,38 @@ export const ListingItem = ({ listing, id, onDelete, onEdit }) => {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" && "/ Month"}
           </p>
-          <div className="categoryListingInfoDiv">
+          <p className="categoryListingInfoText">
             <BedIcon></BedIcon>
-            <p className="categoryListingInfoText">
-              {listing.bedrooms}
-              {listing.bedrooms > 1 ? " Bedrooms" : " Bedroom"}
-            </p>
+            {listing.bedrooms}
+            {listing.bedrooms > 1 ? " Bedrooms" : " Bedroom"}
+          </p>
+          <p className="categoryListingInfoText">
             <BathtubIcon></BathtubIcon>
-            <p className="categoryListingInfoText">
-              {listing.bathrooms}
-              {listing.bathrooms > 1 ? " Bedrooms" : " Bedroom"}
-            </p>
-          </div>
-          <div className="categoryListingInfoDiv">
+            {listing.bathrooms}
+            {listing.bathrooms > 1 ? " Bedrooms" : " Bedroom"}
+          </p>
+          <p className="categoryListingInfoText">
             <LocalParkingIcon></LocalParkingIcon>
-            <p className="categoryListingInfoText">
-              {listing.parking ? "Has Parking space" : "No parking space"}
-            </p>
-          </div>
-        </div>
+            {listing.parking ? "Has Parking space" : "No parking space"}
+          </p>
+        </Box>
       </Link>
-      {onDelete && (
-        <div onClick={() => onDelete(listing.id, listing.name)}>
-          <DeleteForeverIcon />
-        </div>
-      )}
-      {onEdit && <EditIcon onClick={() => onEdit(id)} />}
-    </li>
+      <Box>
+        {onDelete && (
+          <Button
+            startIcon={<DeleteForeverIcon />}
+            fullWidth
+            onClick={() => onDelete(listing.id, listing.name)}
+          >
+            Delete
+          </Button>
+        )}
+        {onEdit && (
+          <Button fullWidth startIcon={<EditIcon />} onClick={() => onEdit(id)}>
+            Edit
+          </Button>
+        )}
+      </Box>
+    </Card>
   );
 };
