@@ -8,6 +8,12 @@ import { Spinner } from "../components/Spinner";
 import { db } from "../firebase.config";
 import ShareIcon from "@mui/icons-material/Share";
 import Carousel from "react-material-ui-carousel";
+import { Box } from "@mui/system";
+import BedIcon from "@mui/icons-material/Bed";
+import BathtubIcon from "@mui/icons-material/Bathtub";
+import LocalParkingIcon from "@mui/icons-material/LocalParking";
+import Button from "@mui/material/Button";
+import Chip from "@mui/material/Chip";
 
 export const Listing = () => {
   const [listing, setListing] = useState(null);
@@ -61,36 +67,58 @@ export const Listing = () => {
       {shareLinkCopied && <p className="linkeCopied">Link Copied</p>}
 
       <div className="listingDetails">
-        <p className="listingName">
-          {listing.name} -{"€"}
-          {listing.offer ? listing.discountedPrice : listing.regularPrice}
-        </p>
-        <p className="listingLocation">{listing.location}</p>
-        <p className="listingType">
-          For {listing.type === "rent" ? "Rent" : "Sale"}
-        </p>
-        {listing.offer && (
-          <p>{listing.regularPrice - listing.discountedPrice}</p>
-        )}
-        <ul className="listingDetailsList">
-          <li>
-            {listing.bedrooms > 1
-              ? `${listing.bedrooms} Bedrooms`
-              : "1 Bedroom"}
-          </li>
-          <li>
-            {listing.bathrooms > 1
-              ? `${listing.bathrooms} Bathrooms`
-              : "1 Bathroom"}
-          </li>
-          <li>{listing.parking && "Parking spot"}</li>
-          <li>{listing.furniced && "Furniced"}</li>
-        </ul>
-        {auth.currentUser?.id !== listing.userRef && (
-          <Link to={`/contact/${listing.userRef}?${listing.name}`}>
-            Contact landlord
-          </Link>
-        )}
+        <p className="listingName">{listing.name}</p>
+        <Chip label={`For ${listing.type === "rent" ? "Rent" : "Sale"}`} />
+        <Box
+          sx={{
+            width: "100%",
+            margin: "20px 0",
+          }}
+        >
+          <p className="categoryListingLocation">{listing.location}</p>
+          <p className="categoryListingPrice">
+            €
+            {listing.discountedPrice
+              ? listing.discountedPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : listing.regularPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {listing.type === "rent" && "/ Month"}
+          </p>
+          <p className="categoryListingInfoText">
+            <BedIcon></BedIcon>
+            {listing.bedrooms}
+            {listing.bedrooms > 1 ? " Bedrooms" : " Bedroom"}
+          </p>
+          <p className="categoryListingInfoText">
+            <BathtubIcon></BathtubIcon>
+            {listing.bathrooms}
+            {listing.bathrooms > 1 ? " Bedrooms" : " Bedroom"}
+          </p>
+          <p className="categoryListingInfoText">
+            <LocalParkingIcon></LocalParkingIcon>
+            {listing.parking ? "Has Parking space" : "No parking space"}
+          </p>
+          {listing.offer && (
+            <p>
+              {listing.regularPrice - listing.discountedPrice} off from original
+              price.
+            </p>
+          )}
+          <p>{listing.furniced && "Furniced"}</p>
+          {auth.currentUser?.id !== listing.userRef && (
+            <Button
+              onClick={() =>
+                navigate(`/contact/${listing.userRef}?${listing.name}`)
+              }
+              variant="contained"
+            >
+              Contact landlord
+            </Button>
+          )}
+        </Box>
       </div>
     </main>
   );

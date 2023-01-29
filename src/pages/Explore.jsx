@@ -14,12 +14,13 @@ export const Explore = () => {
   const { isMobile } = useResponsivness();
   return (
     <div className="explore">
-      <div>
-        <Slider></Slider>
-      </div>
       <header>
         <h2>Explore</h2>
       </header>
+      <div>
+        <Slider></Slider>
+      </div>
+
       <main>
         <p className="exploreCategoryHeading">Categories</p>
         <Box sx={{ width: "100%" }}>

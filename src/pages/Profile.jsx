@@ -160,7 +160,12 @@ export const Profile = () => {
         {!loading && listings?.length > 0 && (
           <>
             <p className="listingText">Your listings</p>
-            <ul className="listingsList">
+            <ul
+              className="listingsList"
+              style={{
+                padding: 0,
+              }}
+            >
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}

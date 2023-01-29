@@ -42,7 +42,7 @@ export const Slider = () => {
   return (
     listings && (
       <>
-        <p className="exploreHeader">Recommended</p>
+        <p className="exploreCategoryHeading">Recommended</p>
         <Carousel height={500} swipe={true}>
           {listings.map(({ data, id }) => (
             <div
@@ -58,14 +58,17 @@ export const Slider = () => {
                   maxWidth: 1056,
                   overflow: "hidden",
                   width: "100%",
+                  cursor: "pointer",
+                  "&:hover": {
+                    filter: "brightness(0.5) drop-shadow(2px 4px 6px black)",
+                  },
                 }}
                 src={data.imageUrls[0]}
                 alt={"test"}
               />
-              {/* <img src={data.imageUrls[0]} alt="" /> */}
               <p className="swiperSlideText">{data.name}</p>
               <p className="swiperSlidePrice">
-                {data.discountedPrice ?? data.regularPrice}
+                {data.discountedPrice || data.regularPrice}
                 {data.type === "rent" && "/ month"}
               </p>
             </div>

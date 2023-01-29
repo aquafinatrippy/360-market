@@ -42,7 +42,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           {!isMobile && <DesktopNavbar></DesktopNavbar>}
-          <Container>
+          <Container
+            sx={{
+              marginBottom: isMobile ? "70px" : 0,
+            }}
+          >
             <Routes>
               <Route path="/" element={<Explore />} />
               <Route path="/offers" element={<Offers />} />
@@ -63,6 +67,7 @@ function App() {
               <Route path="/editlisting/:listingId" element={<EditListing />} />
             </Routes>
           </Container>
+
           {isMobile && <Navbar></Navbar>}
         </Router>
       </ThemeProvider>

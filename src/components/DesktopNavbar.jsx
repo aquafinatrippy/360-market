@@ -40,7 +40,7 @@ function DesktopNavbar() {
               textDecoration: "none",
             }}
           >
-            PROPERTY MARKET
+            DREAM HOMES
           </Typography>
 
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
